@@ -40,7 +40,7 @@ class SearchPage extends React.Component {
 
                     results = results.map(book => ({...book, shelf: getShelf(book)}));
 
-                    this.setState({results: results});
+                    this.setState({results});
                 } else {
                     this.setState({results: []});
                 }
@@ -73,8 +73,8 @@ class SearchPage extends React.Component {
                             {results.map((book) => (
                                 <Book key={book.id} id={book.id} title={book.title}
                                       onBookChanged={() => this.props.onBookChanged()} shelf={book.shelf}
-                                      author={book.authors === undefined ? "Unknown" : book.authors[0]}
-                                      thumbnail={book.imageLinks !== undefined ? book.imageLinks.thumbnail : "http://via.placeholder.com/128x193?text=No%20Cover"}/>
+                                      author={book && book.authors ? book.authors.join(", ") : "Unknown"}
+                                      thumbnail={book && book.imageLinks ? book.imageLinks.thumbnail : "http://via.placeholder.com/128x193?text=No%20Cover"}/>
                             ))}
                         </ol>
                     ))}

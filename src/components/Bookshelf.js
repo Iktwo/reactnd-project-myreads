@@ -37,7 +37,7 @@ class Bookshelf extends React.Component {
                 <h2 className="bookshelf-title">{title}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {books.map((book) => (
+                        {books && books.map((book) => (
                             <Book key={book.id} id={book.id} title={book.title} author={book.authors[0]}
                                   shelf={shelf} onBookChanged={() => this.onBookChanged()}
                                   thumbnail={book.imageLinks.thumbnail}
