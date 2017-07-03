@@ -5,12 +5,18 @@ import Bookshelf from '../components/Bookshelf';
 import * as BooksApi from '../BooksAPI';
 
 class MainPage extends React.Component {
-    componentDidMount() {
+    fetchBooks() {
+        console.log("Fetching Books");
+
         BooksApi.getAll().then((books) => {
             this.setState({books: books});
             this.setState({bookshelves: [...new Set(books.map(book => book.shelf))]});
         });
-    }
+    };
+
+    componentDidMount() {
+        this.fetchBooks()
+    };
 
     state = {
         books: [],
@@ -27,6 +33,7 @@ class MainPage extends React.Component {
                     <div>
                         {this.state.bookshelves.map((shelf) =>
                             <Bookshelf
+                                onBookChanged={() => this.fetchBooks()}
                                 key={shelf} title={bookshelvesName[shelf]}
                                 books={this.state.books.filter((book) => book.shelf === shelf)}/>
                         )}

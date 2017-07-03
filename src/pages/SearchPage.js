@@ -10,6 +10,10 @@ class SearchPage extends React.Component {
         results: []
     };
 
+    onBookChanged() {
+
+    };
+
     searchBooks(query) {
         if (query && query !== "") {
             BooksApi.search(query).then((results) => {
@@ -45,7 +49,8 @@ class SearchPage extends React.Component {
                     {(results.length > 0 && (
                         <ol className="books-grid">
                             {results.map((book) => (
-                                <Book key={book.id} title={book.title}
+                                <Book key={book.id} id={book.id} title={book.title}
+                                      onBookChanged={() => this.onBookChanged()}
                                       author={book.authors === undefined ? "Unknown" : book.authors[0]}
                                       thumbnail={book.imageLinks.thumbnail}/>
                             ))}
