@@ -9,6 +9,7 @@ export const READ = "read";
 
 class Bookshelf extends React.Component {
     static propTypes = {
+        shelf: PropTypes.string,
         title: PropTypes.string.isRequired,
         books: PropTypes.array.isRequired,
         onBookChanged: PropTypes.func
@@ -25,6 +26,12 @@ class Bookshelf extends React.Component {
     render() {
         const {title, books} = this.props;
 
+        let shelf = this.props.shelf;
+
+        if (!shelf) {
+            shelf = NONE;
+        }
+
         return (
             <div className="bookshelf">
                 <h2 className="bookshelf-title">{title}</h2>
@@ -32,7 +39,8 @@ class Bookshelf extends React.Component {
                     <ol className="books-grid">
                         {books.map((book) => (
                             <Book key={book.id} id={book.id} title={book.title} author={book.authors[0]}
-                                  onBookChanged={() => this.onBookChanged()} thumbnail={book.imageLinks.thumbnail}
+                                  shelf={shelf} onBookChanged={() => this.onBookChanged()}
+                                  thumbnail={book.imageLinks.thumbnail}
                             />
                         ))}
                     </ol>

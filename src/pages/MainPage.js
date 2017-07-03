@@ -34,7 +34,7 @@ class MainPage extends React.Component {
                         {this.state.bookshelves.map((shelf) =>
                             <Bookshelf
                                 onBookChanged={() => this.fetchBooks()}
-                                key={shelf} title={bookshelvesName[shelf]}
+                                key={shelf} shelf={shelf} title={bookshelvesName[shelf]}
                                 books={this.state.books.filter((book) => book.shelf === shelf)}/>
                         )}
                     </div>
