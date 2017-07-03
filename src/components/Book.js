@@ -41,7 +41,7 @@ class Book extends React.Component {
                         <div className="book-cover" style={{
                             width: 128,
                             height: 193,
-                            backgroundImage: 'url(' + thumbnail + ')'
+                            backgroundImage: `url(${thumbnail})`
                         }}/>
                         <BookMenu shelf={shelf} onShelfChanged={(newShelf) => this.shelfChanged(newShelf)}/>
                     </div>
